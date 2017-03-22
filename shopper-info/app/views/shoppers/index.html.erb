@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Shoppers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Loyalty</th>
+      <th>Department</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shoppers.each do |shopper| %>
+      <tr>
+        <td><%= shopper.name %></td>
+        <td><%= shopper.loyalty %></td>
+        <td><%= shopper.department %></td>
+        <td><%= link_to 'Show', shopper %></td>
+        <td><%= link_to 'Edit', edit_shopper_path(shopper) %></td>
+        <td><%= link_to 'Destroy', shopper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Shopper', new_shopper_path %>

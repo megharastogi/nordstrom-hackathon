@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @shopper.name %>
+</p>
+
+<p>
+  <strong>Loyalty:</strong>
+  <%= @shopper.loyalty %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @shopper.department %>
+</p>
+
+<%= link_to 'Edit', edit_shopper_path(@shopper) %> |
+<%= link_to 'Back', shoppers_path %>
