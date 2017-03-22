@@ -4,7 +4,7 @@ class ShoppersController < ApplicationController
   # GET /shoppers
   # GET /shoppers.json
   def index
-    @shoppers = Shopper.all
+    @shoppers = Shopper.where(updated_at: 24.hours.ago..Time.now)
   end
 
   # GET /shoppers/1
