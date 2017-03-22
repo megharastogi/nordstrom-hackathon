@@ -69,6 +69,6 @@ class ShoppersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shopper_params
-      params.require(:shopper).permit(:name, :loyalty, :department)
+      params.require(:shopper).permit(:name, :loyalty, :department,:nord_shopper_id)
     end
 end
