@@ -4,7 +4,8 @@ class ShoppersController < ApplicationController
   # GET /shoppers
   # GET /shoppers.json
   def index
-    @shoppers = Shopper.where(updated_at: 24.hours.ago..Time.now)
+    @shoppers = Shopper.where(updated_at: 1.hours.ago..Time.now)
+    return @shoppers
   end
 
   # GET /shoppers/1
@@ -24,7 +25,13 @@ class ShoppersController < ApplicationController
   # POST /shoppers
   # POST /shoppers.json
   def create
-    @shopper = Shopper.new(shopper_params)
+    @shoppers = Shopper.where(nord_shopper_id: shopper_params['nord_shopper_id']).limit(1)
+    if @shoppers.count > 0
+      @shopper = @shoppers.first
+      @shopper.update_attributes(shopper_params)
+    else
+      @shopper = Shopper.new(shopper_params)
+    end
 
     respond_to do |format|
       if @shopper.save
