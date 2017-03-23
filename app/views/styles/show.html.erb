@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @style.name %>
+</p>
+
+<p>
+  <strong>Brandname:</strong>
+  <%= @style.brandName %>
+</p>
+
+<p>
+  <strong>Imageurl:</strong>
+  <%= @style.imageURL %>
+</p>
+
+<p>
+  <strong>Styleid:</strong>
+  <%= @style.styleID %>
+</p>
+
+<p>
+  <strong>Shopper:</strong>
+  <%= @style.shopper_id %>
+</p>
+
+<%= link_to 'Edit', edit_style_path(@style) %> |
+<%= link_to 'Back', styles_path %>

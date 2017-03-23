@@ -27,15 +27,26 @@ class ShoppersController < ApplicationController
   # POST /shoppers.json
   def create
     @shoppers = Shopper.where(nord_shopper_id: shopper_params['nord_shopper_id']).limit(1)
+    @styleparams = shopper_params.delete('styles')
+    @shopper_params = {"name" => shopper_params['name'], "nord_shopper_id" => shopper_params['nord_shopper_id'],"loyalty"=> shopper_params['loyalty'],"department"=>shopper_params['department']}
     if @shoppers.count > 0
       @shopper = @shoppers.first
-      @shopper.update_attributes(shopper_params)
+      @shopper.update_attributes(@shopper_params)
     else
-      @shopper = Shopper.new(shopper_params)
+      @shopper = Shopper.new(@shopper_params)
     end
 
     respond_to do |format|
       if @shopper.save
+          @shopper.styles.each do |s|
+            s.delete
+          end 
+          @objArray = JSON.parse(@styleparams)
+          @objArray.each do |s|
+            @style = Style.new(s)
+            @style.shopper_id = @shopper.id
+            @style.save
+          end
         format.html { redirect_to @shopper, notice: 'Shopper was successfully created.' }
         format.json { render :show, status: :created, location: @shopper }
       else
@@ -77,6 +88,6 @@ class ShoppersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shopper_params
-      params.require(:shopper).permit(:name, :loyalty, :department,:nord_shopper_id)
+      params.require(:shopper).permit(:name, :loyalty, :department,:nord_shopper_id, :styles)
     end
 end
