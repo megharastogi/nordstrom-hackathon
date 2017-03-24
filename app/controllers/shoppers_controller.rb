@@ -36,7 +36,6 @@ class ShoppersController < ApplicationController
       @shopper = Shopper.new(@shopper_params)
     end
 
-
     respond_to do |format|
       if @shopper.save
           @shopper.styles.each do |s|

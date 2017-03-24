@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323224004) do
+ActiveRecord::Schema.define(version: 20170324002101) do
+
+  create_table "memos", force: :cascade do |t|
+    t.string   "description"
+    t.integer  "shopper_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "shoppers", force: :cascade do |t|
     t.string   "name"
