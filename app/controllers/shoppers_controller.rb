@@ -41,8 +41,9 @@ class ShoppersController < ApplicationController
           @shopper.styles.each do |s|
             s.delete
           end 
-          #@objArray = JSON.parse(@styleparams)
+          puts "+++++++++++++++++-------------------------+" + @styleparams.inspect
           @styleparams.each do |s|
+            puts "+++++++++++++++++" + s.inspect
             @style = Style.new(s)
             @style.shopper_id = @shopper.id
             @style.save
@@ -88,6 +89,6 @@ class ShoppersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shopper_params
-      params.require(:shopper).permit(:name, :loyalty, :department,:nord_shopper_id, :styles)
+      params.require(:shopper).permit(:name, :loyalty, :department,:nord_shopper_id, styles: [:name, :brandName,:imageURL,:styleID])
     end
 end
