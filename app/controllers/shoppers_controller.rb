@@ -36,13 +36,14 @@ class ShoppersController < ApplicationController
       @shopper = Shopper.new(@shopper_params)
     end
 
+
     respond_to do |format|
       if @shopper.save
           @shopper.styles.each do |s|
             s.delete
           end 
-          @objArray = JSON.parse(@styleparams)
-          @objArray.each do |s|
+          #@objArray = JSON.parse(@styleparams)
+          @styleparams.each do |s|
             @style = Style.new(s)
             @style.shopper_id = @shopper.id
             @style.save
